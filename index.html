@@ -33,7 +33,7 @@
                     console.log("default working")
                     // This is a new web service URL and its validity is unknown.
                     window.safari.pushNotification.requestPermission(
-                        current_url, // The web service URL.
+                        current_url + 'apple_pushnotifications/', // The web service URL.
                         'web.notifly.com',     // The Website Push ID.
                         {"hello":"hello"}, // Data that you choose to send to your server to help you identify the user.
                         checkRemotePermission      // The callback function.
