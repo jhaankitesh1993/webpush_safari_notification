@@ -37,6 +37,7 @@
                         {}, // Data that you choose to send to your server to help you identify the user.
                         checkRemotePermission      // The callback function.
                     );
+                    Notification.requestPermission()
                 }
                 else if (permissionData.permission === 'denied') {
                     console.log("denied")
