@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webpush safari</title>
+    <script type="text/javascript" src="main.js"></script>
+</head>
+<body>
+    <h1>Webpush Safari</h1>
+    <!-- <button type="submit" id="foo"></button> -->
+    <button type="button" id="foo" name="foo">Click Me!</button>
+    <script>
+        
+        var p = document.getElementById("foo");
+        console.log(p)
+        p.onclick = function() {
+        // Ensure that the user can receive Safari Push Notifications.
+        // debugger
+        if ('safari' in window && 'pushNotification' in window.safari) {
+            var permissionData = window.safari.pushNotification.permission('web.notifly.com');
+            console.log(permissionData)
+            checkRemotePermission(permissionData);
+        }
+        };
+        var data = "hello"
+        let current_url = window.location.href
+        console.log(current_url)
+        function checkRemotePermission(permissionData) {
+            
+        if (permissionData.permission === 'default') {
+            console.log("default working")
+            // This is a new web service URL and its validity is unknown.
+            var data = window.safari.pushNotification.requestPermission(
+                current_url, // The web service URL.
+                'web.notifly.com',     // The Website Push ID.
+                {"hello":"hello"}, // Data that you choose to send to your server to help you identify the user.
+                checkRemotePermission      // The callback function.
+            );
+            console.log(data)
+        }
+        else if (permissionData.permission === 'denied') {
+            console.log("denied")
+            // The user said no.
+        }
+        else if (permissionData.permission === 'granted') {
+            console.log("granded")
+            // The web service URL is a valid push provider, and the user said yes.
+            // permissionData.deviceToken is now available to use.
+            console.log(permissionData.deviceToken)
+        }
+        };
+
+
+        
+    </script>
+</body>
+</html>
