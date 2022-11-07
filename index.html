@@ -19,7 +19,7 @@
         // Ensure that the user can receive Safari Push Notifications.
         // debugger
         if ('safari' in window && 'pushNotification' in window.safari) {
-            var permissionData = window.safari.pushNotification.permission('web.notifly.com');
+            var permissionData = window.safari.pushNotification.permission('web.com.notfily.webpushnotification');
             console.log(permissionData)
             checkRemotePermission(permissionData);
         }
@@ -32,8 +32,8 @@
                     console.log("default working")
                     // This is a new web service URL and its validity is unknown.
                     window.safari.pushNotification.requestPermission(
-                        current_url + 'apple_pushnotifications/', // The web service URL.
-                        'web.notifly.com',     // The Website Push ID.
+                        current_url, // The web service URL.
+                        'web.com.notfily.webpushnotification',     // The Website Push ID.
                         {}, // Data that you choose to send to your server to help you identify the user.
                         checkRemotePermission      // The callback function.
                     );
