@@ -28,29 +28,34 @@
         let current_url = window.location.href
         console.log(current_url)
         function checkRemotePermission(permissionData) {
+            try{
+                if (permissionData.permission === 'default') {
+                    console.log("default working")
+                    // This is a new web service URL and its validity is unknown.
+                    window.safari.pushNotification.requestPermission(
+                        current_url, // The web service URL.
+                        'web.notifly.com',     // The Website Push ID.
+                        {"hello":"hello"}, // Data that you choose to send to your server to help you identify the user.
+                        checkRemotePermission      // The callback function.
+                    );
+                    console.log(data)
+                }
+                else if (permissionData.permission === 'denied') {
+                    console.log("denied")
+                    // The user said no.
+                }
+                else if (permissionData.permission === 'granted') {
+                    console.log("granded")
+                    // The web service URL is a valid push provider, and the user said yes.
+                    // permissionData.deviceToken is now available to use.
+                    console.log(permissionData.deviceToken)
+                }
+            }
+            catch(error){
+                console.log(error)
+            }
+            };
             
-        if (permissionData.permission === 'default') {
-            console.log("default working")
-            // This is a new web service URL and its validity is unknown.
-            var data = window.safari.pushNotification.requestPermission(
-                current_url, // The web service URL.
-                'web.notifly.com',     // The Website Push ID.
-                {"hello":"hello"}, // Data that you choose to send to your server to help you identify the user.
-                checkRemotePermission      // The callback function.
-            );
-            console.log(data)
-        }
-        else if (permissionData.permission === 'denied') {
-            console.log("denied")
-            // The user said no.
-        }
-        else if (permissionData.permission === 'granted') {
-            console.log("granded")
-            // The web service URL is a valid push provider, and the user said yes.
-            // permissionData.deviceToken is now available to use.
-            console.log(permissionData.deviceToken)
-        }
-        };
 
 
         
