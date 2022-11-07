@@ -24,7 +24,6 @@
             checkRemotePermission(permissionData);
         }
         };
-        var data = "hello"
         let current_url = window.location.href
         console.log(current_url)
         function checkRemotePermission(permissionData) {
@@ -35,10 +34,9 @@
                     window.safari.pushNotification.requestPermission(
                         current_url + 'apple_pushnotifications/', // The web service URL.
                         'web.notifly.com',     // The Website Push ID.
-                        {"hello":"hello"}, // Data that you choose to send to your server to help you identify the user.
+                        {}, // Data that you choose to send to your server to help you identify the user.
                         checkRemotePermission      // The callback function.
                     );
-                    console.log(data)
                 }
                 else if (permissionData.permission === 'denied') {
                     console.log("denied")
