@@ -14,28 +14,28 @@
     <script>
         
         var p = document.getElementById("foo");
-        console.log(p)
+        // console.log(p)
         p.onclick = function() {
         // Ensure that the user can receive Safari Push Notifications.
         // debugger
         if ('safari' in window && 'pushNotification' in window.safari) {
-            var permissionData = window.safari.pushNotification.permission('web.com.notfily.webpushnotification');
-            console.log(permissionData)
+            var permissionData = window.safari.pushNotification.permission('web.com.nikhiltest');
+            // console.log(permissionData)
             checkRemotePermission(permissionData);
         }
         };
         let current_url = window.location.href
-        console.log(current_url)
+        // console.log(current_url)
         function checkRemotePermission(permissionData) {
             try{
                 if (permissionData.permission === 'default') {
-                    console.log("default working")
-                    webserviceUrl = "https://cdd6-106-66-205-244.in.ngrok.io"
+                    // console.log("default working")
+                    webserviceUrl = "https://a601-106-67-174-233.in.ngrok.io/api"
                     // This is a new web service URL and its validity is unknown.
                     window.safari.pushNotification.requestPermission(
                         webserviceUrl, // The web service URL.
-                        'web.com.notfily.webpushnotification',     // The Website Push ID.
-                        {}, // Data that you choose to send to your server to help you identify the user.
+                        'web.com.nikhiltest',     // The Website Push ID.
+                        {"application_uuid":"3e23ab89-3e00-4df0-8e85-a67d52344af2"}, // Data that you choose to send to your server to help you identify the user.
                         checkRemotePermission      // The callback function.
                     );
                 }
@@ -48,6 +48,21 @@
                     // The web service URL is a valid push provider, and the user said yes.
                     // permissionData.deviceToken is now available to use.
                     console.log(permissionData.deviceToken)
+                    // WARNING: For POST requests, body is set to null by browsers.
+
+                    // var xhr = new XMLHttpRequest();
+                    // xhr.withCredentials = true;
+
+                    // xhr.addEventListener("readystatechange", function() {
+                    // if(this.readyState === 4) {
+                    //     console.log(this.responseText);
+                    // }
+                    // });
+
+                    // xhr.open("POST", "http://192.168.100.100:5000/api/v1/devices/"+permissionData.deviceToken+"/registrations/web.com.nikhiltest");
+                    // xhr.setRequestHeader("Authorization", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxMSwiZW1haWwiOiJuaWtoaWxAcHN5Y2h4ODYuY29tIiwic3RhdHVzIjoxLCJyb2xlIjowLCJpYXQiOjE2Njg1OTg2MDUsIm1mYSI6ZmFsc2UsImV4cCI6MTY2ODY0MTgwNSwibm90aWZpY2F0aW9uX3ZlcnRpY2FsIjoiNTMxIn0.1F87oj_B4uGld5KHrMCKlF09J_XGT-NtUJASJWf4W5s");
+
+                    // xhr.send();
                 }
             }
             catch(error){
